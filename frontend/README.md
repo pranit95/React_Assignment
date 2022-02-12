@@ -17,3 +17,7 @@ You may also see any lint errors in the console.
 ### `npm run lint`
 
 To check the lint errors
+
+### `npm run lint:fix`
+
+To fix the lint errors
