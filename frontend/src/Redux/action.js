@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_DATA_REQUEST,GET_DATA_SUCCESS,GET_DATA_FAILURE} from './actionTypes';
+import {GET_DATA_REQUEST,GET_DATA_SUCCESS,GET_DATA_FAILURE,DELETE_DATA} from './actionTypes';
 
 
 const getDataRequest = () => {
@@ -21,6 +21,13 @@ const getDataFailure = (payload) => {
     };
 };
 
+const deleteData = (payload) => {
+    return{
+        type: DELETE_DATA,
+        payload
+    };
+};
+
 const getDataApi = () => dispatch => {
     dispatch(getDataRequest());
     
@@ -35,4 +42,4 @@ const getDataApi = () => dispatch => {
         });
 };
 
-export {getDataApi,getDataRequest,getDataSuccess,getDataFailure}; 
+export {getDataApi,getDataRequest,getDataSuccess,getDataFailure,deleteData}; 

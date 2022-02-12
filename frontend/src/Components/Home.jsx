@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { getDataApi } from '../Redux/action';
+import { deleteData, getDataApi } from '../Redux/action';
 import styles from './Styles/home.module.css';
+import { saveData } from '../utils';
 import {
     Table,
     TableContainer,
@@ -19,6 +20,10 @@ const Home = () => {
     React.useEffect(() => {
         dispatch(getDataApi());
     }, [dispatch]);
+
+    const handleDelete = (id) => {
+        dispatch(deleteData(id));
+    };
 
     return isLoading ? (
         <div>Loading...</div>
@@ -41,6 +46,9 @@ const Home = () => {
                             <TableCell style={{ fontWeight: '600' }} align="left">
                               Email
                             </TableCell>
+                            <TableCell style={{ fontWeight: '600' }} align="left">
+                              Operation
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -52,6 +60,10 @@ const Home = () => {
                                 <TableCell align="left">{row.first_name}</TableCell>
                                 <TableCell align="left">{row.last_name}</TableCell>
                                 <TableCell align="left">{row.email}</TableCell>
+                                <TableCell>
+                                    <button style={{marginRight:'20px',cursor:'pointer'}} onClick={() => saveData()}>Edit</button>
+                                    <button style={{cursor:'pointer'}} onClick={() => handleDelete(row.id)}>Delete</button>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

@@ -1,10 +1,19 @@
-import {GET_DATA_REQUEST,GET_DATA_SUCCESS,GET_DATA_FAILURE} from './actionTypes';
+import { getData, saveData } from '../utils';
+import {GET_DATA_REQUEST,GET_DATA_SUCCESS,GET_DATA_FAILURE,DELETE_DATA} from './actionTypes';
+
+const initForm = {
+    first_name:'',
+    last_name:'',
+    email:''
+};
 
 const intiState = {
     isLoading:false,
     isError:false,
-    data:[]
+    data:getData('listitem') || [],
+    form:initForm
 };
+
 
 const reducer = (state = intiState, {type, payload}) => {
     switch (type){
@@ -16,6 +25,7 @@ const reducer = (state = intiState, {type, payload}) => {
         };
     }
     case GET_DATA_SUCCESS:{
+        saveData('listitem',payload);
         return {
             ...state,
             data:[...payload],
@@ -28,6 +38,16 @@ const reducer = (state = intiState, {type, payload}) => {
             ...state,
             isLoading:false,
             isError:true,
+        };
+    }
+    case DELETE_DATA: {
+        let filterData = state.data?.filter(e => e.id !== payload);
+        saveData('listitem',filterData);
+        return {
+            ...state,
+            data:filterData,
+            isLoading:false,
+            isError:false
         };
     }
     default:
