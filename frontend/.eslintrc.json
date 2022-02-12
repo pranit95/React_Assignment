@@ -8,8 +8,8 @@
         "plugin:react/recommended"
     ],
     "settings": {
-        "react":{
-            "version":"detect"
+        "react": {
+          "version": "detect"
         }
     },
     "parserOptions": {
@@ -23,22 +23,10 @@
         "react"
     ],
     "rules": {
-        "react/react-in-jsx-scope":"off",
-        "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "indent": ["error", 2],
+        "linebreak-style": 1,
+        "quotes": ["error", "double"]
     }
 }
